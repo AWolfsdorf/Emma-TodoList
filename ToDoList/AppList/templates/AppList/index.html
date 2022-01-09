@@ -1,10 +1,11 @@
 <h1>Lista De tareas</h1>
 
-
-<ul>
-{% for task in userprofile.task_set.all %}
-    <h4>ff</h4>
-    <li>{{ userprofile.name }} -- {{ task.task_text }} -- Estado:{{ task.is_done }}</li>
+{% for userprofile in object_list %}
+    <h4>Tareas de {{ userprofile.name }}</h4>
+    <ul>
+    {% for task in userprofile.task_set.all %}
+        <li>{{ task.task_text }} -- Estado: {{ task.is_done }}</li>
+    {% endfor %}
+    </ul>
 {% endfor %}
-</ul>
 
