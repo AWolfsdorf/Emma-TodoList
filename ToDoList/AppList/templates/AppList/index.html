@@ -1,6 +1,6 @@
 <h1>Lista De tareas</h1>
 
-{% for userprofile in object_list %}
+{% for userprofile in user_profiles %}
     <h4>Tareas de {{ userprofile.name }}</h4>
     <ul>
     {% for task in userprofile.task_set.all %}
@@ -8,4 +8,6 @@
     {% endfor %}
     </ul>
 {% endfor %}
+
+<li><a href="{% url 'admin:index' %}">DashBoard</a></li>
 
