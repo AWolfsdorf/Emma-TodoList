@@ -1,13 +1,5 @@
-<h1>Lista De tareas</h1>
 
-{% for userprofile in user_profiles %}
-    <h4>Tareas de {{ userprofile.name }}</h4>
-    <ul>
-    {% for task in userprofile.task_set.all %}
-        <li>{{ task.task_text }} -- Estado: {{ task.is_done }}</li>
-    {% endfor %}
-    </ul>
-{% endfor %}
-
-<li><a href="{% url 'admin:index' %}">DashBoard</a></li>
+<h1>{{ request.user.get_username }}</h1>
+<br>
+<h1>{{ perfilesDeUsuario.email }}</h1>
 

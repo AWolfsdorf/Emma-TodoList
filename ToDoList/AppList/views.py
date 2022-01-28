@@ -23,7 +23,6 @@ from django.contrib.auth.decorators import login_required
 
 def is_loged(request):
     print(request.user.is_authenticated)
-
     if not request.user.is_authenticated:
         return False
     return True
@@ -32,7 +31,8 @@ def is_loged(request):
 class MyViews(HttpRequest):
     def listar_tareas(request):
         if is_loged(request):
-            UserProfiles= UserProfile.objects.all()
-            return render(request,"../templates/AppList/listarTareas.html",{"request":request,"perfilesDeUsuario": UserProfiles})
+            # UserProfiles= UserProfile.objects.all()
+            UserProfiles= UserProfile.objects.get(email=request.user.get_username())
+            return render(request,"../templates/AppList/listarTareas.html",{"request":request,"perfilDeUsuario": UserProfiles})
         else:
             return HttpResponseRedirect("/admin/")
