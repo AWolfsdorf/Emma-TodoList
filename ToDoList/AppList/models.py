@@ -1,4 +1,5 @@
 from enum import Enum
+import enum
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser
@@ -56,17 +57,18 @@ class UserProfile(AbstractBaseUser,PermissionsMixin):
     #Retornan cadena representando nuestro usuario
         return self.email
 
-IS_DONE_STATUS=(
-    ('p','Pendiente'),
-    ('ep','En proceso'),
-    ('r','Realizada'),
-)
+
+status_task =(
+                ('E1' , 'Pendiente'),
+                ('E2' , 'En proceso'),
+                ('E3' , 'Realizada'),
+            )
 
 class Task(models.Model):
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     task_text = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
-    is_done = models.CharField(max_length=2, choices=IS_DONE_STATUS, default="p")
+    is_done = models.CharField(max_length=2, choices=status_task, default='E1')
 
     def __str__(self):
         return self.task_text

@@ -8,9 +8,14 @@
     <title>Lista De Tareas</title>
 </head>
 <body>
-      
-      <h4>Tareas de {{ perfilDeUsuario.name }}</h4>
-      <a href="{% url 'admin:index' %}">Panel De Control</a>
+  <br>
+      <div class="row">
+        <div class="col"><h4>Tareas de {{ perfilDeUsuario.name }}</h4></div>
+        <div class="col-md-auto"></div>
+        <div class="col col-lg-2"><a class="btn btn-primary" href="{% url 'admin:index' %}" role="button">Panel De Control</a></div>
+      </div>
+      <hr>
+      <br>
       <table class="table table-striped">
         <thead>
           <tr>
