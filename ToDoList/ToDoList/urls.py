@@ -15,9 +15,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include , path
+from AppList import views as applist_views
+from django.contrib.auth import views as auth_view
+from users import views as user_views
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    #path('', views.index, name='index'),
-    path('', include('AppList.urls')),
+    path('', applist_views.Home_App,name='homeapp'),
+    path('task/add/', applist_views.TaskAdd_View, name='task-add'),
+    path('task/edit/', applist_views.TaskEdit_View, name='task-edit'),
+    path('task/deleted/', applist_views.TaskDelete_View, name='task-delete'),
+    path('sobreApp/', applist_views.About_App,name='aboutapp'),
+    path('register/',user_views.register, name='register'),
+    path('login/',auth_view.LoginView.as_view(template_name='users/login.html',redirect_authenticated_user=True),name='login'),
+    path('logout/',auth_view.LogoutView.as_view(template_name='users/logout.html'),name='logout'),
 ]
