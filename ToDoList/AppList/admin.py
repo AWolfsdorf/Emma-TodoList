@@ -9,7 +9,6 @@ class TaskAdmin(admin.ModelAdmin):
 
 
 # Register your models here.
-#admin.site.register(models.UserProfile)
 admin.site.register(models.Task,TaskAdmin)
 admin.site.site_header = "Aplicacion de listas de tareas"
 admin.site.site_title = "Admin App listas de tareas"

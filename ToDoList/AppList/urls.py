@@ -4,6 +4,5 @@ from . import views
 app_name = 'AppList'
 
 urlpatterns = [
-    # path('', views.IndexView.as_view(), name='index'),
-    path('', views.MyViews.listar_tareas,name='index'),
+    path('', views.listar_tareas,name='index'),
 ]
