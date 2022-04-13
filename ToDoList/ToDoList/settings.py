@@ -32,12 +32,14 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'AppList.apps.ApplistConfig',
+    'users.apps.UsersConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -126,4 +128,8 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-AUTH_USER_MODEL = 'AppList.UserProfile'
+AUTH_USER_MODEL = 'users.UserProfile'
+
+LOGIN_REDIRECT_URL = 'homeapp'
+LOGOUT_REDIRECT_URL = 'homeapp'
+LOGIN_URL='login'

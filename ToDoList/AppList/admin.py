@@ -4,7 +4,7 @@ from AppList import models
 
 
 class TaskAdmin(admin.ModelAdmin):
-    list_display = ['user','pub_date','task_text', 'is_done']
+    list_display = ['user','pub_date','task_title','task_text', 'state']
     ordering = ['pub_date']
 
 

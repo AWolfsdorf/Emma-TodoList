@@ -1,0 +1,62 @@
+
+
+{% extends "AppList/base.html" %}
+
+{% block title %} HomeApp {%endblock%}
+
+{% block content %}
+
+  <br>
+      <div class="row">
+        <div class="col"><h4>Lista de tareas de {{ perfilDeUsuario.name }}</h4></div>
+        <div class="col-md-auto"></div>
+        <div class="col col-lg-2">
+          {% if user.is_authenticated %}
+          <a class="btn btn-primary"  role="button" href="{% url 'task-add' %}">Nueva Tarea</a>
+          {% endif %}
+        </div>
+      </div>
+      <hr>
+      <br>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Fecha</th>
+            <th scope="col">Titulo</th>
+            <th scope="col">Nota</th>
+            <th scope="col">Estado</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+         <tbody>
+        
+        {% for task in perfilDeUsuario.task_set.all %}
+          <tr>
+            <th scope="row">{{task.pub_date}}</th>
+            <td>{{task.task_title}}</td>
+            <td>{{task.task_text}}</td>
+            <td>
+              {% if task.state == "E1" %}
+                Pendiente
+              {% elif task.state == "E2" %}
+                En proceso
+              {% elif task.state == "E3" %}
+                Realizada
+              {% endif %}
+            </td>
+            <td>
+              <form action="{% url 'task-edit' %}" method="get">
+                <input  type="hidden" name="id_task" id="id_task" value="{{task.id}}">
+                <button type="submit">Editar</button>
+              </form>
+              <form action="{% url 'task-delete' %}" method="get">
+                <input  type="hidden" name="id_task" id="id_task" value="{{task.id}}">
+                <button type="submit">Borrar</button>
+              </form>
+            </td>
+          </tr>
+        {% endfor %}
+        
+         </tbody>
+        </table>
+{% endblock %}
